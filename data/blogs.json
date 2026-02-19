@@ -1,0 +1,82 @@
+[
+	{
+		"id": 1,
+		"title": "How Quantum Computing Startups Are Winning the Marketing Game",
+		"category": "Featured",
+		"date": "February 19, 2026",
+		"readTime": "7 min read",
+		"excerpt": "As quantum computing matures from laboratory curiosity to commercial reality, startups in this space face a unique challenge: how do you market something most people don't understand? We explore the strategies that are working, the mistakes to avoid, and how to position quantum innovation for a mainstream audience.",
+		"featured": true,
+		"file": "articles/a/first.md"
+	},
+	{
+		"id": 2,
+		"title": "Building Authority: How Physics Labs Can Establish Thought Leadership",
+		"category": "Marketing",
+		"date": "February 12, 2026",
+		"readTime": "5 min read",
+		"excerpt": "In the competitive landscape of modern physics research, visibility matters. Laboratories and research institutions that effectively communicate their expertise attract top talent, secure funding, and build collaborative partnerships. Learn the strategies that position research teams as industry leaders.",
+		"featured": false,
+		"file": "articles/building-authority.md"
+	},
+	{
+		"id": 3,
+		"title": "The Future of Physics Communication: Trends to Watch in 2026",
+		"category": "Industry News",
+		"date": "February 5, 2026",
+		"readTime": "6 min read",
+		"excerpt": "Virtual reality simulations, AI-generated explanations, and interactive online experiences are revolutionizing how complex physics is communicated. We break down the emerging technologies and trends that are reshaping science communication in 2026 and beyond.",
+		"featured": false,
+		"file": "articles/future-of-communication.md"
+	},
+	{
+		"id": 4,
+		"title": "Funding Physics: Crafting Your Pitch for Investors Who Get It",
+		"category": "Startups",
+		"date": "January 29, 2026",
+		"readTime": "8 min read",
+		"excerpt": "Venture capitalists increasingly fund physics-based companies, but pitching to them requires a strategic approach. We interview successful physics startup founders about what works, what doesn't, and how to communicate your breakthrough in ways that resonate with the investment community.",
+		"featured": false,
+		"file": "articles/funding-pitch.md"
+	},
+	{
+		"id": 5,
+		"title": "Explaining Quantum Entanglement to Customers: A Marketing Challenge",
+		"category": "Science",
+		"date": "January 22, 2026",
+		"readTime": "4 min read",
+		"excerpt": "Quantum phenomena are fascinating to physicists but mystifying to mainstream audiences. How do you explain entanglement, superposition, and quantum advantage to customers and stakeholders without oversimplifying or losing accuracy? We explore practical communication frameworks that work.",
+		"featured": false,
+		"file": "articles/quantum-explained.md"
+	},
+	{
+		"id": 6,
+		"title": "Content Strategy for Deep Tech: Building Audiences Around Complex Innovation",
+		"category": "Marketing",
+		"date": "January 15, 2026",
+		"readTime": "7 min read",
+		"excerpt": "Content marketing works for deep tech—but it requires a different approach. Instead of product features, physics companies need to build educational content that attracts scientists, investors, and forward-thinking businesses. Learn the strategies that generate qualified leads and build long-term brand value.",
+		"featured": false,
+		"file": "articles/content-strategy.md"
+	},
+	{
+		"id": 7,
+		"title": "Major Investments in Applied Physics: What It Means for Marketing",
+		"category": "Industry News",
+		"date": "January 8, 2026",
+		"readTime": "5 min read",
+		"excerpt": "Record-breaking funding for quantum computing, fusion energy, and advanced materials has opened new opportunities for physics-driven businesses. We analyze recent investment trends and what they mean for companies trying to attract capital and market attention.",
+		"featured": false,
+		"file": "articles/investment-trends.md"
+	},
+    {
+		"id": 9,
+		"title": "material science by ravi ",
+		"category": "material science",
+		"date": "January 8, 2026",
+		"readTime": "5 min read",
+		"excerpt": "material science is the study of materials and their properties. It is a multidisciplinary field that combines physics, chemistry, and engineering to understand how materials behave and how they can be used in various applications. Material scientists work on developing new materials with specific properties for use in industries such as aerospace, electronics, and healthcare.",
+		"featured": false,
+		"file": "articles/material.md"
+	}
+]

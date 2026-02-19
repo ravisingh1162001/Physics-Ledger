@@ -120,102 +120,14 @@
 			</section>
 
 			<section class="container">
-				<div class="featured-post">
-					<span class="blog-category">Featured</span>
-					<h2>How Quantum Computing Startups Are Winning the Marketing Game</h2>
-					<div class="blog-meta">
-						<span>February 19, 2026</span>
-						<span>•</span>
-						<span>7 min read</span>
-					</div>
-					<p>As quantum computing matures from laboratory curiosity to commercial reality, startups in this space face a unique challenge: how do you market something most people don't understand? We explore the strategies that are working, the mistakes to avoid, and how to position quantum innovation for a mainstream audience.</p>
-					<a href="#" class="read-more">Read Featured Article →</a>
-				</div>
+				<div id="featured-post" class="featured-post"></div>
 
 				<div style="margin-bottom: 32px">
 					<h3>Filter by Category</h3>
-					<div class="blog-filters">
-						<button class="filter-btn active">All Posts</button>
-						<button class="filter-btn">Marketing</button>
-						<button class="filter-btn">Science</button>
-						<button class="filter-btn">Startups</button>
-						<button class="filter-btn">Industry News</button>
-					</div>
+					<div class="blog-filters" id="category-filters"></div>
 				</div>
 
-				<div id="blog-posts" class="blog-list">
-					<article class="blog-post">
-						<span class="blog-category">Marketing</span>
-						<h3>Building Authority: How Physics Labs Can Establish Thought Leadership</h3>
-						<div class="blog-meta">
-							<span>February 12, 2026</span>
-							<span>•</span>
-							<span>5 min read</span>
-						</div>
-						<p>In the competitive landscape of modern physics research, visibility matters. Laboratories and research institutions that effectively communicate their expertise attract top talent, secure funding, and build collaborative partnerships. Learn the strategies that position research teams as industry leaders.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-
-					<article class="blog-post">
-						<span class="blog-category">Industry News</span>
-						<h3>The Future of Physics Communication: Trends to Watch in 2026</h3>
-						<div class="blog-meta">
-							<span>February 5, 2026</span>
-							<span>•</span>
-							<span>6 min read</span>
-						</div>
-						<p>Virtual reality simulations, AI-generated explanations, and interactive online experiences are revolutionizing how complex physics is communicated. We break down the emerging technologies and trends that are reshaping science communication in 2026 and beyond.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-
-					<article class="blog-post">
-						<span class="blog-category">Startups</span>
-						<h3>Funding Physics: Crafting Your Pitch for Investors Who Get It</h3>
-						<div class="blog-meta">
-							<span>January 29, 2026</span>
-							<span>•</span>
-							<span>8 min read</span>
-						</div>
-						<p>Venture capitalists increasingly fund physics-based companies, but pitching to them requires a strategic approach. We interview successful physics startup founders about what works, what doesn't, and how to communicate your breakthrough in ways that resonate with the investment community.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-
-					<article class="blog-post">
-						<span class="blog-category">Science</span>
-						<h3>Explaining Quantum Entanglement to Customers: A Marketing Challenge</h3>
-						<div class="blog-meta">
-							<span>January 22, 2026</span>
-							<span>•</span>
-							<span>4 min read</span>
-						</div>
-						<p>Quantum phenomena are fascinating to physicists but mystifying to mainstream audiences. How do you explain entanglement, superposition, and quantum advantage to customers and stakeholders without oversimplifying or losing accuracy? We explore practical communication frameworks that work.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-
-					<article class="blog-post">
-						<span class="blog-category">Marketing</span>
-						<h3>Content Strategy for Deep Tech: Building Audiences Around Complex Innovation</h3>
-						<div class="blog-meta">
-							<span>January 15, 2026</span>
-							<span>•</span>
-							<span>7 min read</span>
-						</div>
-						<p>Content marketing works for deep tech—but it requires a different approach. Instead of product features, physics companies need to build educational content that attracts scientists, investors, and forward-thinking businesses. Learn the strategies that generate qualified leads and build long-term brand value.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-
-					<article class="blog-post">
-						<span class="blog-category">Industry News</span>
-						<h3>Major Investments in Applied Physics: What It Means for Marketing</h3>
-						<div class="blog-meta">
-							<span>January 8, 2026</span>
-							<span>•</span>
-							<span>5 min read</span>
-						</div>
-						<p>Record-breaking funding for quantum computing, fusion energy, and advanced materials has opened new opportunities for physics-driven businesses. We analyze recent investment trends and what they mean for companies trying to attract capital and market attention.</p>
-						<a href="#" class="read-more">Continue Reading →</a>
-					</article>
-				</div>
+				<div id="blog-posts" class="blog-list"></div>
 
 				<div style="text-align: center; margin-top: 48px; padding: 32px; background: rgba(125, 211, 252, 0.05); border-radius: 8px">
 					<h3>Stay Updated</h3>
@@ -233,5 +145,92 @@
 		</footer>
 
 		<script src="app.js"></script>
+		<script>
+			let allBlogs = [];
+			let currentFilter = "All Posts";
+
+			// Fetch and load blog data
+			async function loadBlogs() {
+				try {
+					const response = await fetch("data/blogs.json");
+					allBlogs = await response.json();
+					renderFeaturedPost();
+					renderCategories();
+					renderBlogPosts(allBlogs.filter((blog) => !blog.featured));
+				} catch (error) {
+					console.error("Error loading blogs:", error);
+				}
+			}
+
+			// Render featured post
+			function renderFeaturedPost() {
+				const featured = allBlogs.find((blog) => blog.featured);
+				if (featured) {
+					const featuredHtml = `
+						<span class="blog-category">${featured.category}</span>
+						<h2>${featured.title}</h2>
+						<div class="blog-meta">
+							<span>${featured.date}</span>
+							<span>•</span>
+							<span>${featured.readTime}</span>
+						</div>
+						<p>${featured.excerpt}</p>
+						<a href="${featured.file}" class="read-more">Read Featured Article →</a>
+					`;
+					document.getElementById("featured-post").innerHTML = featuredHtml;
+				}
+			}
+
+			// Render category filter buttons
+			function renderCategories() {
+				const categories = ["All Posts", ...new Set(allBlogs.map((blog) => blog.category))];
+				const filtersHtml = categories.map((cat) => `<button class="filter-btn ${cat === "All Posts" ? "active" : ""}">${cat}</button>`).join("");
+				document.getElementById("category-filters").innerHTML = filtersHtml;
+
+				// Add filter event listeners
+				document.querySelectorAll(".filter-btn").forEach((btn) => {
+					btn.addEventListener("click", function () {
+						document.querySelectorAll(".filter-btn").forEach((b) => b.classList.remove("active"));
+						this.classList.add("active");
+						currentFilter = this.textContent;
+						filterBlogPosts();
+					});
+				});
+			}
+
+			// Filter blog posts by category
+			function filterBlogPosts() {
+				let filtered = allBlogs.filter((blog) => !blog.featured);
+				if (currentFilter !== "All Posts") {
+					filtered = filtered.filter((blog) => blog.category === currentFilter);
+				}
+				renderBlogPosts(filtered);
+			}
+
+			// Render blog posts
+			function renderBlogPosts(blogs) {
+				const postsHtml = blogs
+					.map(
+						(blog) => `
+					<article class="blog-post">
+						<span class="blog-category">${blog.category}</span>
+						<h3>${blog.title}</h3>
+						<div class="blog-meta">
+							<span>${blog.date}</span>
+							<span>•</span>
+							<span>${blog.readTime}</span>
+						</div>
+						<p>${blog.excerpt}</p>
+						<a href="${blog.file}" class="read-more">Continue Reading →</a>
+					</article>
+				`,
+					)
+					.join("");
+				document.getElementById("blog-posts").innerHTML = postsHtml || "<p>No articles found in this category.</p>";
+			}
+
+			// Load blogs on page load
+			document.addEventListener("DOMContentLoaded", loadBlogs);
+		</script>
 	</body>
 </html>
