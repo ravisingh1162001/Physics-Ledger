@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Blog — Physics Ledger</title>
+		<link rel="stylesheet" href="styles.css" />
+		<style>
+			.blog-post {
+				background: var(--card);
+				border: 1px solid rgba(255, 255, 255, 0.1);
+				border-radius: 8px;
+				padding: 24px;
+				margin-bottom: 24px;
+				transition: all 0.3s ease;
+			}
+
+			.blog-post:hover {
+				border-color: var(--accent);
+				transform: translateY(-2px);
+			}
+
+			.blog-meta {
+				display: flex;
+				gap: 16px;
+				margin-bottom: 12px;
+				font-size: 0.9rem;
+				color: var(--muted);
+			}
+
+			.blog-category {
+				display: inline-block;
+				background: rgba(125, 211, 252, 0.1);
+				color: var(--accent);
+				padding: 4px 12px;
+				border-radius: 4px;
+				font-size: 0.85rem;
+				margin-bottom: 12px;
+			}
+
+			.blog-post h3 {
+				margin: 0 0 8px 0;
+				font-size: 1.4rem;
+			}
+
+			.blog-post p {
+				margin: 0 0 16px 0;
+				color: var(--muted);
+				line-height: 1.6;
+			}
+
+			.read-more {
+				color: var(--accent);
+				text-decoration: none;
+				font-weight: 500;
+				transition: 0.3s;
+			}
+
+			.read-more:hover {
+				color: var(--accent2);
+			}
+
+			.blog-filters {
+				display: flex;
+				gap: 12px;
+				margin-bottom: 32px;
+				flex-wrap: wrap;
+			}
+
+			.filter-btn {
+				background: transparent;
+				color: var(--muted);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+				padding: 8px 16px;
+				border-radius: 4px;
+				cursor: pointer;
+				transition: 0.3s;
+			}
+
+			.filter-btn:hover,
+			.filter-btn.active {
+				color: var(--accent);
+				border-color: var(--accent);
+			}
+
+			.featured-post {
+				background: linear-gradient(135deg, rgba(125, 211, 252, 0.1), rgba(167, 139, 250, 0.1));
+				border: 2px solid rgba(125, 211, 252, 0.3);
+				padding: 32px;
+				border-radius: 8px;
+				margin-bottom: 32px;
+			}
+
+			.featured-post h2 {
+				margin-top: 0;
+				color: var(--accent);
+			}
+		</style>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<h1 class="brand">Physics Ledger</h1>
+				<nav>
+					<a href="index.html">Home</a>
+					<a href="about.html">About</a>
+					<a href="blog.html">Blog</a>
+					<a href="resources.html">Resources</a>
+					<a href="contact.html">Contact</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<section class="hero">
+				<div class="container">
+					<h2>Physics Ledger Blog</h2>
+					<p>Insights on marketing, innovation, and the business of physics</p>
+				</div>
+			</section>
+
+			<section class="container">
+				<div class="featured-post">
+					<span class="blog-category">Featured</span>
+					<h2>How Quantum Computing Startups Are Winning the Marketing Game</h2>
+					<div class="blog-meta">
+						<span>February 19, 2026</span>
+						<span>•</span>
+						<span>7 min read</span>
+					</div>
+					<p>As quantum computing matures from laboratory curiosity to commercial reality, startups in this space face a unique challenge: how do you market something most people don't understand? We explore the strategies that are working, the mistakes to avoid, and how to position quantum innovation for a mainstream audience.</p>
+					<a href="#" class="read-more">Read Featured Article →</a>
+				</div>
+
+				<div style="margin-bottom: 32px">
+					<h3>Filter by Category</h3>
+					<div class="blog-filters">
+						<button class="filter-btn active">All Posts</button>
+						<button class="filter-btn">Marketing</button>
+						<button class="filter-btn">Science</button>
+						<button class="filter-btn">Startups</button>
+						<button class="filter-btn">Industry News</button>
+					</div>
+				</div>
+
+				<div id="blog-posts" class="blog-list">
+					<article class="blog-post">
+						<span class="blog-category">Marketing</span>
+						<h3>Building Authority: How Physics Labs Can Establish Thought Leadership</h3>
+						<div class="blog-meta">
+							<span>February 12, 2026</span>
+							<span>•</span>
+							<span>5 min read</span>
+						</div>
+						<p>In the competitive landscape of modern physics research, visibility matters. Laboratories and research institutions that effectively communicate their expertise attract top talent, secure funding, and build collaborative partnerships. Learn the strategies that position research teams as industry leaders.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+
+					<article class="blog-post">
+						<span class="blog-category">Industry News</span>
+						<h3>The Future of Physics Communication: Trends to Watch in 2026</h3>
+						<div class="blog-meta">
+							<span>February 5, 2026</span>
+							<span>•</span>
+							<span>6 min read</span>
+						</div>
+						<p>Virtual reality simulations, AI-generated explanations, and interactive online experiences are revolutionizing how complex physics is communicated. We break down the emerging technologies and trends that are reshaping science communication in 2026 and beyond.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+
+					<article class="blog-post">
+						<span class="blog-category">Startups</span>
+						<h3>Funding Physics: Crafting Your Pitch for Investors Who Get It</h3>
+						<div class="blog-meta">
+							<span>January 29, 2026</span>
+							<span>•</span>
+							<span>8 min read</span>
+						</div>
+						<p>Venture capitalists increasingly fund physics-based companies, but pitching to them requires a strategic approach. We interview successful physics startup founders about what works, what doesn't, and how to communicate your breakthrough in ways that resonate with the investment community.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+
+					<article class="blog-post">
+						<span class="blog-category">Science</span>
+						<h3>Explaining Quantum Entanglement to Customers: A Marketing Challenge</h3>
+						<div class="blog-meta">
+							<span>January 22, 2026</span>
+							<span>•</span>
+							<span>4 min read</span>
+						</div>
+						<p>Quantum phenomena are fascinating to physicists but mystifying to mainstream audiences. How do you explain entanglement, superposition, and quantum advantage to customers and stakeholders without oversimplifying or losing accuracy? We explore practical communication frameworks that work.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+
+					<article class="blog-post">
+						<span class="blog-category">Marketing</span>
+						<h3>Content Strategy for Deep Tech: Building Audiences Around Complex Innovation</h3>
+						<div class="blog-meta">
+							<span>January 15, 2026</span>
+							<span>•</span>
+							<span>7 min read</span>
+						</div>
+						<p>Content marketing works for deep tech—but it requires a different approach. Instead of product features, physics companies need to build educational content that attracts scientists, investors, and forward-thinking businesses. Learn the strategies that generate qualified leads and build long-term brand value.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+
+					<article class="blog-post">
+						<span class="blog-category">Industry News</span>
+						<h3>Major Investments in Applied Physics: What It Means for Marketing</h3>
+						<div class="blog-meta">
+							<span>January 8, 2026</span>
+							<span>•</span>
+							<span>5 min read</span>
+						</div>
+						<p>Record-breaking funding for quantum computing, fusion energy, and advanced materials has opened new opportunities for physics-driven businesses. We analyze recent investment trends and what they mean for companies trying to attract capital and market attention.</p>
+						<a href="#" class="read-more">Continue Reading →</a>
+					</article>
+				</div>
+
+				<div style="text-align: center; margin-top: 48px; padding: 32px; background: rgba(125, 211, 252, 0.05); border-radius: 8px">
+					<h3>Stay Updated</h3>
+					<p>Get the latest Physics Ledger insights delivered to your inbox.</p>
+					<form style="display: flex; gap: 8px; max-width: 400px; margin: 16px auto">
+						<input type="email" placeholder="your@email.com" required style="flex: 1; padding: 12px; background: var(--card); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: 4px; color: var(--text)" />
+						<button type="submit" class="btn">Subscribe</button>
+					</form>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">© Physics Ledger — Marketing for physics startups & labs</div>
+		</footer>
+
+		<script src="app.js"></script>
+	</body>
+</html>
