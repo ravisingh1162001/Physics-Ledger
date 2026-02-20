@@ -184,16 +184,38 @@
 					const params = new URLSearchParams(window.location.search);
 					const filePath = params.get("file");
 
+					console.log("Current page URL:", window.location.href);
+					console.log("Raw file parameter:", filePath);
+
 					if (!filePath) {
 						document.getElementById("article-content").innerHTML = '<div class="error">Error: No article specified. <a href="blog.html">Back to Blog</a></div>';
 						return;
 					}
 
-					// Fetch the markdown file
-					const response = await fetch(filePath);
-					if (!response.ok) throw new Error("Article not found");
+					// Decode the file path in case it's URL encoded
+					const decodedPath = decodeURIComponent(filePath);
+					console.log("Decoded file path:", decodedPath);
 
-					const markdown = await response.text();
+					// Try to fetch the markdown file
+					console.log("Attempting to fetch:", decodedPath);
+					const response = await fetch(decodedPath);
+
+					console.log("Fetch response status:", response.status);
+					if (!response.ok) {
+						throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+					}
+
+					let markdown = await response.text();
+					console.log("Successfully loaded markdown, length:", markdown.length);
+
+					// Remove YAML front matter if present
+					if (markdown.startsWith("---")) {
+						const parts = markdown.split("---");
+						if (parts.length >= 3) {
+							markdown = parts.slice(2).join("---").trim();
+							console.log("Removed YAML front matter, new length:", markdown.length);
+						}
+					}
 
 					// Parse markdown to HTML
 					const html = marked.parse(markdown);
