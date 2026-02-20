@@ -175,7 +175,7 @@
 							<span>${featured.readTime}</span>
 						</div>
 						<p>${featured.excerpt}</p>
-						<a href="${featured.file}" class="read-more">Read Featured Article →</a>
+						<a href="blog-reader.html?file=${featured.file}" class="read-more">Read Featured Article →</a>
 					`;
 					document.getElementById("featured-post").innerHTML = featuredHtml;
 				}
@@ -221,7 +221,7 @@
 							<span>${blog.readTime}</span>
 						</div>
 						<p>${blog.excerpt}</p>
-						<a href="${blog.file}" class="read-more">Continue Reading →</a>
+						<a href="blog-reader.html?file=${blog.file}" class="read-more">Continue Reading →</a>
 					</article>
 				`,
 					)

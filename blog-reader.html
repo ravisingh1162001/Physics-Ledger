@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Article — Physics Ledger</title>
+		<link rel="stylesheet" href="styles.css" />
+		<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+		<style>
+			.article-container {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 32px 24px;
+			}
+
+			.article-meta {
+				display: flex;
+				gap: 16px;
+				margin-bottom: 24px;
+				font-size: 0.95rem;
+				color: var(--muted);
+				flex-wrap: wrap;
+			}
+
+			.article-category {
+				display: inline-block;
+				background: rgba(125, 211, 252, 0.1);
+				color: var(--accent);
+				padding: 4px 12px;
+				border-radius: 4px;
+				font-size: 0.85rem;
+			}
+
+			.article-content {
+				line-height: 1.8;
+				color: var(--text);
+			}
+
+			.article-content h1,
+			.article-content h2,
+			.article-content h3 {
+				margin-top: 32px;
+				margin-bottom: 16px;
+				color: var(--text);
+			}
+
+			.article-content h1 {
+				font-size: 2rem;
+				margin-bottom: 24px;
+				margin-top: 0;
+			}
+
+			.article-content h2 {
+				font-size: 1.5rem;
+				border-bottom: 2px solid rgba(125, 211, 252, 0.2);
+				padding-bottom: 12px;
+			}
+
+			.article-content h3 {
+				font-size: 1.2rem;
+			}
+
+			.article-content p {
+				margin-bottom: 16px;
+			}
+
+			.article-content ul,
+			.article-content ol {
+				margin-bottom: 16px;
+				margin-left: 24px;
+			}
+
+			.article-content li {
+				margin-bottom: 8px;
+			}
+
+			.article-content blockquote {
+				border-left: 4px solid var(--accent);
+				margin: 24px 0;
+				padding: 16px 24px;
+				background: rgba(125, 211, 252, 0.05);
+				font-style: italic;
+				color: var(--muted);
+			}
+
+			.article-content code {
+				background: rgba(125, 211, 252, 0.05);
+				padding: 2px 6px;
+				border-radius: 3px;
+				font-family: monospace;
+				color: var(--accent);
+			}
+
+			.article-content pre {
+				background: rgba(0, 0, 0, 0.3);
+				padding: 16px;
+				border-radius: 8px;
+				overflow-x: auto;
+				margin-bottom: 16px;
+			}
+
+			.article-content pre code {
+				background: none;
+				padding: 0;
+				color: #fff;
+			}
+
+			.article-content a {
+				color: var(--accent);
+				text-decoration: none;
+				transition: 0.3s;
+			}
+
+			.article-content a:hover {
+				text-decoration: underline;
+				color: var(--accent2);
+			}
+
+			.article-header hr {
+				border: none;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+				margin: 24px 0;
+			}
+
+			.back-link {
+				display: inline-block;
+				margin-bottom: 24px;
+				color: var(--accent);
+				text-decoration: none;
+				transition: 0.3s;
+			}
+
+			.back-link:hover {
+				color: var(--accent2);
+			}
+
+			.loading {
+				text-align: center;
+				padding: 48px 24px;
+				color: var(--muted);
+			}
+
+			.error {
+				background: rgba(239, 68, 68, 0.1);
+				border: 1px solid rgba(239, 68, 68, 0.3);
+				color: #fca5a5;
+				padding: 16px;
+				border-radius: 8px;
+				margin: 24px 0;
+			}
+		</style>
+	</head>
+	<body>
+		<header class="site-header">
+			<div class="container">
+				<h1 class="brand">Physics Ledger</h1>
+				<nav>
+					<a href="index.html">Home</a>
+					<a href="about.html">About</a>
+					<a href="blog.html">Blog</a>
+					<a href="resources.html">Resources</a>
+					<a href="contact.html">Contact</a>
+				</nav>
+			</div>
+		</header>
+
+		<main>
+			<section class="container article-container">
+				<a href="blog.html" class="back-link">← Back to Blog</a>
+				<div id="article-content" class="article-content">
+					<div class="loading">Loading article...</div>
+				</div>
+			</section>
+		</main>
+
+		<footer class="site-footer">
+			<div class="container">© Physics Ledger — Marketing for physics startups & labs</div>
+		</footer>
+
+		<script>
+			async function loadArticle() {
+				try {
+					// Get the file path from URL parameters
+					const params = new URLSearchParams(window.location.search);
+					const filePath = params.get("file");
+
+					if (!filePath) {
+						document.getElementById("article-content").innerHTML = '<div class="error">Error: No article specified. <a href="blog.html">Back to Blog</a></div>';
+						return;
+					}
+
+					// Fetch the markdown file
+					const response = await fetch(filePath);
+					if (!response.ok) throw new Error("Article not found");
+
+					const markdown = await response.text();
+
+					// Parse markdown to HTML
+					const html = marked.parse(markdown);
+
+					// Render the content
+					document.getElementById("article-content").innerHTML = html;
+				} catch (error) {
+					console.error("Error loading article:", error);
+					document.getElementById("article-content").innerHTML = '<div class="error">Error loading article: ' + error.message + '. <a href="blog.html">Back to Blog</a></div>';
+				}
+			}
+
+			// Load article when page is ready
+			document.addEventListener("DOMContentLoaded", loadArticle);
+		</script>
+	</body>
+</html>
