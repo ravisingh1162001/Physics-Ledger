@@ -185,40 +185,38 @@
 					const filePath = params.get("file");
 
 					console.log("Current page URL:", window.location.href);
-					console.log("Raw file parameter:", filePath);
+					console.log("File parameter:", filePath);
 
 					if (!filePath) {
 						document.getElementById("article-content").innerHTML = '<div class="error">Error: No article specified. <a href="blog.html">Back to Blog</a></div>';
 						return;
 					}
 
-					// Decode the file path in case it's URL encoded
-					const decodedPath = decodeURIComponent(filePath);
-					console.log("Decoded file path:", decodedPath);
+					// Fetch the blogs.json file
+					console.log("Fetching blogs.json...");
+					const response = await fetch("data/blogs.json");
 
-					// Try to fetch the markdown file
-					console.log("Attempting to fetch:", decodedPath);
-					const response = await fetch(decodedPath);
-
-					console.log("Fetch response status:", response.status);
 					if (!response.ok) {
-						throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+						throw new Error(`Failed to fetch blogs data: HTTP ${response.status}`);
 					}
 
-					let markdown = await response.text();
-					console.log("Successfully loaded markdown, length:", markdown.length);
+					const blogs = await response.json();
+					console.log("Loaded blogs:", blogs.length);
 
-					// Remove YAML front matter if present
-					if (markdown.startsWith("---")) {
-						const parts = markdown.split("---");
-						if (parts.length >= 3) {
-							markdown = parts.slice(2).join("---").trim();
-							console.log("Removed YAML front matter, new length:", markdown.length);
-						}
+					// Find the blog with matching file path
+					const blog = blogs.find((b) => b.file === filePath);
+
+					if (!blog || !blog.content) {
+						console.error("Blog not found for file:", filePath);
+						document.getElementById("article-content").innerHTML = '<div class="error">Article not found: ' + filePath + '. <a href="blog.html">Back to Blog</a></div>';
+						return;
 					}
+
+					console.log("Found blog:", blog.title);
+					console.log("Content length:", blog.content.length);
 
 					// Parse markdown to HTML
-					const html = marked.parse(markdown);
+					const html = marked.parse(blog.content);
 
 					// Render the content
 					document.getElementById("article-content").innerHTML = html;
